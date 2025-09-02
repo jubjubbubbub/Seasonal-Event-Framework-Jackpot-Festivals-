@@ -1,0 +1,23 @@
+public class SeasonalEvent {
+    public string eventName;
+    public DateTime startDate;
+    public DateTime endDate;
+    public List<Quest> eventQuests;
+    public List<Reward> exclusiveRewards;
+    public ARZone themedZone;
+}
+
+public class EventManager : MonoBehaviour {
+    public List<SeasonalEvent> activeEvents;
+
+    public bool IsEventActive(string eventName) {
+        SeasonalEvent evt = activeEvents.Find(e => e.eventName == eventName);
+        return evt != null && DateTime.Now >= evt.startDate && DateTime.Now <= evt.endDate;
+    }
+
+    public void TriggerEventContent(string eventName) {
+        if (IsEventActive(eventName)) {
+            // Load themed AR zone, quests, and rewards
+        }
+    }
+}
